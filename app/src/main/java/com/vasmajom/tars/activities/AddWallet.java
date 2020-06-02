@@ -31,7 +31,7 @@ public class AddWallet extends AppCompatActivity {
         setContentView(R.layout.add_wallet);
 
         Intent intent = getIntent();
-        payeeName = intent.getStringExtra("payeeName");
+        payeeName = intent.getStringExtra(getString(R.string.payee_name));
 
         db = new DatabaseHelper(this);
 
@@ -53,12 +53,12 @@ public class AddWallet extends AppCompatActivity {
     public void addPayee() {
         if (address.getText().toString().equals(confirmAddress.getText().toString())) {
             db.savePayee(payeeName, currency.getText().toString(), address.getText().toString());
-            throwToast(this, "Successfully added!");
+            throwToast(this, getString(R.string.db_success));
             Intent intent = new Intent(this, WalletList.class);
-            intent.putExtra("payeeName", payeeName);
+            intent.putExtra(getString(R.string.payee_name), payeeName);
             startActivity(intent);
         } else {
-            throwToast(this, "Address does not match confirmation!");
+            throwToast(this, getString(R.string.db_address_error));
         }
     }
 

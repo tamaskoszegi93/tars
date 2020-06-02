@@ -50,14 +50,14 @@ public class AddPayee extends AppCompatActivity {
     public void addPayee() {
         if (address.getText().toString().equals(confirmAddress.getText().toString())) {
             if (!db.savePayee(name.getText().toString(), currency.getText().toString(), address.getText().toString())) {
-                throwToast(this, "Error during saving. Please try again!");
+                throwToast(this, getString(R.string.db_save_error));
             } else {
-                throwToast(this, "Successfully added!");
+                throwToast(this, getString(R.string.db_success));
                 Intent intent = new Intent(this, PayeeList.class);
                 startActivity(intent);
             }
         } else {
-            throwToast(this, "Address does not match confirmation!");
+            throwToast(this, getString(R.string.db_address_error));
         }
     }
 

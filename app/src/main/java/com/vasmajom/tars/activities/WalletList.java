@@ -40,8 +40,8 @@ public class WalletList extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
 
         Intent intent = getIntent();
-        payeeName = intent.getStringExtra("payeeName");
-        setTitle(payeeName + "'s wallets");
+        payeeName = intent.getStringExtra(getString(R.string.payee_name));
+        setTitle(String.format(getString(R.string.wallet_header), payeeName));
 
         walletList = findViewById(R.id.list_view);
         walletList.setHasFixedSize(true);
@@ -73,7 +73,7 @@ public class WalletList extends AppCompatActivity {
 
     public void addWallet() {
         Intent intent = new Intent(this, AddWallet.class);
-        intent.putExtra("payeeName", payeeName);
+        intent.putExtra(getString(R.string.payee_name), payeeName);
         startActivity(intent);
     }
 
